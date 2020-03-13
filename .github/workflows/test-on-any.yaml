@@ -1,0 +1,19 @@
+name: Test on any Push event
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - '*'
+jobs:
+  test:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+      - uses: actions/setup-dotnet@1.4.0
+        name: Install dotnet
+        with:
+          dotnet-version: '3.1.101'
+      - run: dotnet test
+        name: All test
