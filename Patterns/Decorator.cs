@@ -2,27 +2,27 @@ namespace Patterns
 {
     public class Decorator<T>
     {
-        public Decorator(T target)
+        public Decorator(T v)
         {
-            this.target = target;
+            this.v = v;
         }
 
-        private T target;
+        private T v;
 
         private (ulong Get, ulong Set) access = (0, 0);
 
-        public T Target
+        public T V
         {
             get
             {
                 access.Get = checked(access.Get + 1);
-                return target;
+                return v;
             }
 
-            private set
+            set
             {
                 access.Set = checked(access.Set + 1);
-                target = value;
+                v = value;
             }
         }
 
