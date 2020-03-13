@@ -17,6 +17,12 @@ namespace Patterns.Tests
             i.V = 2;
             Assert.Equal(1uL, i.Access.Get);
             Assert.Equal(2uL, i.Access.Set);
+            i.V++;
+            Assert.Equal(2uL, i.Access.Get);
+            Assert.Equal(3uL, i.Access.Set);
+            Assert.Equal(3, i.V);
+            Assert.Equal(3uL, i.Access.Get);
+            Assert.Equal(3uL, i.Access.Set);
         }
     }
 }
