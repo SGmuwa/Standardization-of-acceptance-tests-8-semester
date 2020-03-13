@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Standardization_of_acceptance_tests_8_semester
+namespace Patterns
 {
     public class Flower
     {
@@ -13,34 +13,34 @@ namespace Standardization_of_acceptance_tests_8_semester
             Length = length;
         }
 
-        private Flower() {}
+        private Flower() { }
 
         public class Builder
         {
             private Flower current = new Flower();
 
-            private dynamic seted = new {isColor = false, isLength = false};
+            private (bool isColor, bool isLength) setted = (false, false);
 
             public Builder SetColor(ConsoleColor color)
             {
                 current.Color = color;
-                seted.isColor = true;
+                setted.isColor = true;
                 return this;
             }
 
-            public Builder SetLength(int length)
+            public Builder SetLength(float length)
             {
                 current.Length = length;
-                seted.isLength = true;
+                setted.isLength = true;
                 return this;
             }
 
             public Flower Build()
             {
-                if(seted.isColor && seted.isLength)
+                if (setted.isColor && setted.isLength)
                     return current;
                 else
-                    throw new Exception(seted);
+                    throw new Exception(setted.ToString());
             }
         }
     }
