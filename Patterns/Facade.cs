@@ -21,81 +21,41 @@ using System.Collections.Generic;
 
 namespace Patterns
 {
-    public interface IBasicList<T>
+    public class BasicList<T> : IList<T>
     {
-        T this[int index] { get; set; }
+        public BasicList(IList<T> target) => this.target = target;
 
-        int Count { get; }
-
-        void Add(T item);
-
-        void Insert(int index, T item);
-
-        void RemoveAt(int index);
-    }
-
-    public class Facade<T> : IBasicList<T>, IList<T>
-    {
         private IList<T> target;
 
         public T this[int index] { get => target[index]; set => target[index] = value; }
 
         public int Count => target.Count;
 
-        public void Add(T item)
-        {
-            target.Add(item);
-        }
+        public void Add(T item) => target.Add(item);
 
-        public void Insert(int index, T item)
-        {
-            target.Insert(index, item);
-        }
+        public void Insert(int index, T item) => target.Insert(index, item);
 
-        public void RemoveAt(int index)
-        {
-            target.RemoveAt(index);
-        }
+        public void RemoveAt(int index) => target.RemoveAt(index);
 
-        #region Скрытые за интерфейс
+        #region Hide (not public)
 
         bool ICollection<T>.IsReadOnly => target.IsReadOnly;
 
-        void ICollection<T>.Clear()
-        {
-            target.Clear();
-        }
+        void ICollection<T>.Clear() => target.Clear();
 
-        bool ICollection<T>.Contains(T item)
-        {
-            return target.Contains(item);
-        }
+        bool ICollection<T>.Contains(T item) => target.Contains(item);
 
         void ICollection<T>.CopyTo(T[] array, int arrayIndex)
-        {
-            target.CopyTo(array, arrayIndex);
-        }
+            => target.CopyTo(array, arrayIndex);
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return target.GetEnumerator();
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => target.GetEnumerator();
 
-        int IList<T>.IndexOf(T item)
-        {
-            return target.IndexOf(item);
-        }
+        int IList<T>.IndexOf(T item) => target.IndexOf(item);
 
-        bool ICollection<T>.Remove(T item)
-        {
-            return target.Remove(item);
-        }
+        bool ICollection<T>.Remove(T item) => target.Remove(item);
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return target.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => target.GetEnumerator();
 
-        #endregion Скрытые за интерфейс
+        #endregion
     }
 }
