@@ -23,7 +23,12 @@ namespace Patterns
 {
     public class BasicList<T> : IList<T>
     {
-        public BasicList(IList<T> target) => this.target = target;
+        public BasicList(IList<T> target = null)
+        {
+            this.target = target;
+            if(this.target == null)
+                this.target = new List<T>();
+        }
 
         private IList<T> target;
 
