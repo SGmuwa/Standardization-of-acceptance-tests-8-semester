@@ -49,7 +49,7 @@ namespace Patterns.AbstractFactory
         public override ICanEat BuildCanEat()
         {
             if ((isReadyToBuild & 0b100) == 0b100)
-                return wolf;
+                return new Wolf(wolf.CurrentName);
             else
                 throw new Exception();
         }
@@ -57,7 +57,7 @@ namespace Patterns.AbstractFactory
         public override IFood BuildFood()
         {
             if ((isReadyToBuild & 0b11) == 0b11)
-                return meat;
+                return new Meat(meat.Animal, meat.Weight);
             else
                 throw new Exception();
         }

@@ -64,16 +64,16 @@ namespace Patterns.AbstractFactory
 
         public override ICanEat BuildCanEat()
         {
-            if ((isReadyToBuild & 0b11) == 0b11)
-                return vehicle;
+            if ((isReadyToBuild & 0b11100) == 0b11100)
+                return new Vehicle(vehicle.Brand, vehicle.Model, vehicle.Consumption);
             else
                 throw new Exception();
         }
 
         public override IFood BuildFood()
         {
-            if ((isReadyToBuild & 0b11100) == 0b11100)
-                return gas;
+            if ((isReadyToBuild & 0b1) == 0b1)
+                return new Gas(gas.Brand) { Weight = gas.Weight };
             else
                 throw new Exception();
         }
