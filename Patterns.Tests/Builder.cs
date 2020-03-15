@@ -42,5 +42,14 @@ namespace Patterns.Tests
                     .SetColor(ConsoleColor.Red)
                     .Build();
             });
+
+        [Fact]
+        public void NotEqualLink()
+        {
+            Flower.Builder b = new Flower.Builder()
+                .SetColor(ConsoleColor.Gray)
+                .SetLength(165.0f);
+            Assert.False(b.Build() == b.Build());
+        }
     }
 }
