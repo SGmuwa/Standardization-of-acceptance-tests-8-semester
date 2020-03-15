@@ -23,14 +23,43 @@ namespace Patterns.AbstractFactory
     {
         Meat meat = new Meat();
         Wolf wolf = new Wolf();
+        byte isReadyToBuild = 0;
+
+        public MeatWolfFactory SetMeatAnimal(ICanEat animal)
+        {
+            meat.Animal = animal;
+            isReadyToBuild |= 0b1;
+            return this;
+        }
+
+        public MeatWolfFactory SetMeatWeight(double weight)
+        {
+            meat.Weight = weight;
+            isReadyToBuild |= 0b10;
+            return this;
+        }
+
+        public MeatWolfFactory SetWolfName(string currentName)
+        {
+            wolf.CurrentName = currentName;
+            isReadyToBuild |= 0b100;
+            return this;
+        }
+
         public override ICanEat BuildCanEat()
         {
-            throw new NotImplementedException();
+            if ((isReadyToBuild & 0b100) == 0b100)
+                return wolf;
+            else
+                throw new Exception();
         }
 
         public override IFood BuildFood()
         {
-            throw new NotImplementedException();
+            if ((isReadyToBuild & 0b11) == 0b11)
+                return meat;
+            else
+                throw new Exception();
         }
     }
 }

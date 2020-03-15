@@ -20,11 +20,20 @@ namespace Patterns.AbstractFactory
 {
     public class Meat : IFood
     {
-        public ICanEat Animal { get; }
-        public double Weight { get; set; }
-        public string Name { get => Animal.Name + " meat"; }
+        private ICanEat animal;
 
-        public Meat(ICanEat animal, int weight)
+        public ICanEat Animal
+        {
+            get => animal; internal set
+            {
+                animal = value;
+                Name = Animal.Name + " meat";
+            }
+        }
+        public double Weight { get; set; }
+        public string Name { get; private set; }
+
+        public Meat(ICanEat animal, double weight)
         {
             Animal = animal;
             Weight = weight;

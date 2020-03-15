@@ -21,9 +21,19 @@ namespace Patterns.AbstractFactory
     public class Wolf : ICanEat
     {
         internal Wolf() {}
-        public Wolf(string currentName) => this.currentName = currentName;
+        public Wolf(string currentName) => this.CurrentName = currentName;
         private string currentName;
-        public string Name => $"{nameof(Wolf)} {currentName}";
+        public string Name { get; private set; }
+
+        public string CurrentName
+        {
+            get => currentName; internal set
+            {
+                currentName = value;
+                Name = $"{nameof(Wolf)} {CurrentName}";
+            }
+        }
+
         public void Eat(IFood food)
         {
             if (food is Meat)
