@@ -16,15 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Threading;
+
 namespace Patterns.AbstractFactory
 {
     public abstract class AbstractFactory
     {
         private static int i = 0;
-        public readonly int CountCreate = i;
 
-        public AbstractFactory() => i++;
+        public int UniqId { get; }
+
+        public AbstractFactory() => UniqId = Interlocked.Increment(ref i) - 1;
+
         public abstract ICanEat BuildCanEat();
+
         public abstract IFood BuildFood();
     }
 }
