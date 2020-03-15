@@ -21,7 +21,7 @@ namespace Patterns.AbstractFactory
     public class Vehicle : ICanEat
     {
         private string brand;
-        private object model;
+        private string model;
 
         internal Vehicle() { }
 
@@ -41,7 +41,7 @@ namespace Patterns.AbstractFactory
             }
         }
 
-        public object Model
+        public string Model
         {
             get => model; internal set
             {
