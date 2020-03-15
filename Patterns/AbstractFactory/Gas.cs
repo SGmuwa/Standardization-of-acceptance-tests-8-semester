@@ -18,13 +18,22 @@
 
 namespace Patterns.AbstractFactory
 {
-    public abstract class AbstractFactory
+    public class Gas : IFood
     {
-        private static int i = 0;
-        public readonly int CountCreate = i;
+        private string brand;
 
-        public AbstractFactory() => i++;
-        public abstract ICanEat BuildCanEat();
-        public abstract IFood BuildFood();
+        internal Gas() { }
+
+        public Gas(string brand) => Brand = brand;
+        public string Name { get; private set; }
+        public double Weight { get; set; }
+        public string Brand
+        {
+            get => brand; internal set
+            {
+                brand = value;
+                Name = $"{nameof(Gas)} «{Brand}»";
+            }
+        }
     }
 }

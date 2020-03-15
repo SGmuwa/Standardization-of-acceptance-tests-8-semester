@@ -18,13 +18,18 @@
 
 namespace Patterns.AbstractFactory
 {
-    public abstract class AbstractFactory
+    public class Meat : IFood
     {
-        private static int i = 0;
-        public readonly int CountCreate = i;
+        public ICanEat Animal { get; }
+        public double Weight { get; set; }
+        public string Name { get => Animal.Name + " meat"; }
 
-        public AbstractFactory() => i++;
-        public abstract ICanEat BuildCanEat();
-        public abstract IFood BuildFood();
+        public Meat(ICanEat animal, int weight)
+        {
+            Animal = animal;
+            Weight = weight;
+        }
+
+        internal Meat() { }
     }
 }

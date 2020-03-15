@@ -18,13 +18,9 @@
 
 namespace Patterns.AbstractFactory
 {
-    public abstract class AbstractFactory
+    public interface ICanEat
     {
-        private static int i = 0;
-        public readonly int CountCreate = i;
-
-        public AbstractFactory() => i++;
-        public abstract ICanEat BuildCanEat();
-        public abstract IFood BuildFood();
+        void Eat(IFood food);
+        string Name { get; }
     }
 }

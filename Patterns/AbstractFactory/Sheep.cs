@@ -16,15 +16,16 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 namespace Patterns.AbstractFactory
 {
-    public abstract class AbstractFactory
+    public class Sheep : ICanEat
     {
-        private static int i = 0;
-        public readonly int CountCreate = i;
+        public Sheep(string name = null)
+            => Name = $"{nameof(Sheep)}{(name == null ? "" : $" {name}")}";
 
-        public AbstractFactory() => i++;
-        public abstract ICanEat BuildCanEat();
-        public abstract IFood BuildFood();
+        public string Name { get; }
+
+        public void Eat(IFood food) => throw new NotImplementedException();
     }
 }
