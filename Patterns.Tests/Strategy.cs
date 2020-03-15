@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Patterns.Tests
@@ -26,7 +27,24 @@ namespace Patterns.Tests
         [Fact]
         public void Expected()
         {
-            throw new NotImplementedException();
+            List<Decorator<dynamic>> list = new List<Decorator<dynamic>>()
+            {
+                new Decorator<dynamic>(123),
+                new Decorator<dynamic>("Hello word"),
+                new Decorator<dynamic>(ConsoleColor.Red)
+            };
+            Assert.Equal(3, list.Count);
+            for (int i = 0; i < list.Count; i++)
+                list[i].V += 1;
+            Assert.Equal(124, list[0].V);
+            Assert.Equal("Hello word1", list[1].V);
+            Assert.Equal(ConsoleColor.Magenta, list[2].V);
+            Assert.Equal(2uL, list[0].Access.Get);
+            Assert.Equal(2uL, list[1].Access.Get);
+            Assert.Equal(2uL, list[2].Access.Get);
+            Assert.Equal(1uL, list[0].Access.Set);
+            Assert.Equal(1uL, list[1].Access.Set);
+            Assert.Equal(1uL, list[2].Access.Set);
         }
     }
 }
