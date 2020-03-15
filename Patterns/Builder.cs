@@ -56,7 +56,7 @@ namespace Patterns
             public Flower Build()
             {
                 if (setted.isColor && setted.isLength)
-                    return current;
+                    return new Flower(current.Color, current.Length);
                 else
                     throw new Exception(setted.ToString());
             }
