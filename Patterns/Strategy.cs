@@ -16,35 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Xunit;
 #error Должен меняться алгоритм в зависимости от типа. Надо реализовать стратегию, а не использовать.
-namespace Patterns.Tests
+namespace Patterns
 {
-    public class Strategy
-    {
-        [Fact]
-        public void Expected()
-        {
-            List<Decorator<dynamic>> list = new List<Decorator<dynamic>>()
-            {
-                new Decorator<dynamic>(123),
-                new Decorator<dynamic>("Hello word"),
-                new Decorator<dynamic>(ConsoleColor.Red)
-            };
-            Assert.Equal(3, list.Count);
-            for (int i = 0; i < list.Count; i++)
-                list[i].V += 1;
-            Assert.Equal(124, list[0].V);
-            Assert.Equal("Hello word1", list[1].V);
-            Assert.Equal(ConsoleColor.Magenta, list[2].V);
-            Assert.Equal(2uL, list[0].Access.Get);
-            Assert.Equal(2uL, list[1].Access.Get);
-            Assert.Equal(2uL, list[2].Access.Get);
-            Assert.Equal(1uL, list[0].Access.Set);
-            Assert.Equal(1uL, list[1].Access.Set);
-            Assert.Equal(1uL, list[2].Access.Set);
-        }
-    }
+	
 }

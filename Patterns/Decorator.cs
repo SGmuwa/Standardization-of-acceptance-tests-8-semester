@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-Пример: фильтр компонентов. Захотелось добавить функционал к существующему фильтру. Который принимает фильтр и добавляет ещё одну фильтрацию. overide, вызов basic. Придумать свою.
+#error Пример: фильтр компонентов. Захотелось добавить функционал к существующему фильтру. Который принимает фильтр и добавляет ещё одну фильтрацию. overide, вызов basic. Придумать свою.
 namespace Patterns
 {
     public class Decorator<T>
