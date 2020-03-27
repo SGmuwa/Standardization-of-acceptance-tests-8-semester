@@ -17,6 +17,7 @@
 */
 
 using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 using static System.Text.Encoding;
 
@@ -107,6 +108,23 @@ namespace Patterns.Decorator.Tests
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
+        }
+
+        [Fact]
+        public void WithThreadSafeTest()
+        {
+            IValueHolder<int> i = new ValueHolder<int>(0);
+            i = new SynchronizedDecorator<int>(i);
+            Parallel.For(0, 1000, _ => i.V++);
+            Assert.Equal((1000uL, 1000uL), i.Access);
+        }
+
+        [Fact]
+        public void WithoutThreadSafeTest()
+        {
+            IValueHolder<int> i = new ValueHolder<int>(0);
+            Parallel.For(0, 1000, _ => i.V++);
+            Assert.NotEqual((1000uL, 1000uL), i.Access);
         }
     }
 }
