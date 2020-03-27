@@ -18,8 +18,9 @@
 
 using System;
 using System.Collections.Generic;
+using Patterns.Decorator;
 using Xunit;
-#error Должен меняться алгоритм в зависимости от типа. Надо реализовать стратегию, а не использовать.
+#warning Должен меняться алгоритм в зависимости от типа. Надо реализовать стратегию, а не использовать.
 namespace Patterns.Tests
 {
     public class Strategy
@@ -27,11 +28,11 @@ namespace Patterns.Tests
         [Fact]
         public void Expected()
         {
-            List<Decorator<dynamic>> list = new List<Decorator<dynamic>>()
+            List<ValueHolder<dynamic>> list = new List<ValueHolder<dynamic>>()
             {
-                new Decorator<dynamic>(123),
-                new Decorator<dynamic>("Hello word"),
-                new Decorator<dynamic>(ConsoleColor.Red)
+                new ValueHolder<dynamic>(123),
+                new ValueHolder<dynamic>("Hello word"),
+                new ValueHolder<dynamic>(ConsoleColor.Red)
             };
             Assert.Equal(3, list.Count);
             for (int i = 0; i < list.Count; i++)
@@ -45,6 +46,7 @@ namespace Patterns.Tests
             Assert.Equal(1uL, list[0].Access.Set);
             Assert.Equal(1uL, list[1].Access.Set);
             Assert.Equal(1uL, list[2].Access.Set);
+            throw new NotImplementedException();
         }
     }
 }

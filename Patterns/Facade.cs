@@ -18,7 +18,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-#error реализовать фасат, а не сокрыть просто
+#warning реализовать фасат, а не сокрыть просто
 namespace Patterns
 {
     public class BasicList<T> : IList<T>

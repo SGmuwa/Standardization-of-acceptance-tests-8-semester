@@ -17,9 +17,9 @@
 */
 namespace Patterns.Decorator
 {
-    public class ThreadSafeDecorator<T> : IValueHolder<T>
+    public class SynchronizedDecorator<T> : IValueHolder<T>
     {
-        public ThreadSafeDecorator(IValueHolder<T> vh) => this.vh = vh;
+        public SynchronizedDecorator(IValueHolder<T> vh) => this.vh = vh;
 
         private readonly IValueHolder<T> vh;
 

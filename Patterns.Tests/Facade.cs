@@ -63,6 +63,7 @@ namespace Patterns.Tests
             li.Clear();
             Assert.Empty(li);
             Assert.Empty(list);
+            throw new NotImplementedException();
         }
 
         private static void ListsEqual<T>(IList<T> expect, IList<T> actual)
