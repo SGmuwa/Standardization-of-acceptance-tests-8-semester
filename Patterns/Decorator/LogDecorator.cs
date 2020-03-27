@@ -15,35 +15,45 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#error Пример: фильтр компонентов. Захотелось добавить функционал к существующему фильтру. Который принимает фильтр и добавляет ещё одну фильтрацию. overide, вызов basic. Придумать свою.
-namespace Patterns
+using System.IO;
+
+namespace Patterns.Decorator
 {
-    public class Decorator<T>
+    public class LogDecorator<T> : IValueHolder<T>
     {
-        public Decorator(T v)
+        public LogDecorator(IValueHolder<T> vh, TextWriter output)
         {
-            this.v = v;
+            this.vh = vh;
+            this.output = output;
         }
 
-        private T v;
+        private readonly IValueHolder<T> vh;
 
-        private (ulong Get, ulong Set) access = (0, 0);
+        private readonly TextWriter output;
 
         public T V
         {
             get
             {
-                access.Get = checked(access.Get + 1);
-                return v;
+                T value = this.vh.V;
+                output.WriteLine("Get: " + value);
+                return value;
             }
 
             set
             {
-                access.Set = checked(access.Set + 1);
-                v = value;
+                output.WriteLine("Set: " + value);
+                this.vh.V = value;
             }
         }
 
-        public (ulong Get, ulong Set) Access => access;
+        public (ulong Get, ulong Set) Access
+        {
+            get
+            {
+                output.WriteLine("Access: " + this.vh.Access);
+                return this.vh.Access;
+            }
+        }
     }
 }
