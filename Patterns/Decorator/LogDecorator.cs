@@ -51,8 +51,9 @@ namespace Patterns.Decorator
         {
             get
             {
-                output.WriteLine("Access: " + this.vh.Access);
-                return this.vh.Access;
+                var a = this.vh.Access;
+                output.WriteLine("Access: " + a);
+                return a;
             }
         }
     }
