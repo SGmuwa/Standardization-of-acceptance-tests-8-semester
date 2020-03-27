@@ -16,10 +16,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.Collections;
-using System.Collections.Generic;
-#warning Должен меняться алгоритм в зависимости от типа. Надо реализовать стратегию, а не использовать.
-namespace Patterns
+namespace Patterns.Strategy
 {
-	
+    public class Human
+    {
+        public string data { get; set; } = "I am human.\n";
+
+        public override string ToString()
+        {
+            return data.ToString();
+        }
+    }
 }

@@ -16,27 +16,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Xunit;
-namespace Patterns.Strategy.Tests
+namespace Patterns.Strategy
 {
-    public class Strategy
+    public class HTML
     {
-        [Fact]
-        public void HTMLTest()
-        {
-            HTML h = new HTML();
-            Assert.Equal("<html>\n</html>\n", h.ToString());
-            h.AddHead();
-            Assert.Equal("<html>\n\t<head>\n\t</head>\n</html>\n", h.ToString());
-        }
+        public string data { get; set; } = "<html>\n</html>\n";
 
-        [Fact]
-        public void HumanTest()
-        {
-            Human h = new Human();
-            Assert.Equal("I am human.\n", h.ToString());
-            h.AddHead();
-            Assert.Equal("I am human.\nI have head on my shoulders.\n", h.ToString());
-        }
+        public override string ToString() => data.ToString();
     }
 }

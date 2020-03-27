@@ -16,27 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Xunit;
-namespace Patterns.Strategy.Tests
+namespace Patterns.Strategy
 {
-    public class Strategy
+	public static class AdderHead
     {
-        [Fact]
-        public void HTMLTest()
-        {
-            HTML h = new HTML();
-            Assert.Equal("<html>\n</html>\n", h.ToString());
-            h.AddHead();
-            Assert.Equal("<html>\n\t<head>\n\t</head>\n</html>\n", h.ToString());
-        }
+        public static void AddHead(this Human that)
+            => that.data += "I have head on my shoulders.\n";
 
-        [Fact]
-        public void HumanTest()
+        public static void AddHead(this HTML that)
         {
-            Human h = new Human();
-            Assert.Equal("I am human.\n", h.ToString());
-            h.AddHead();
-            Assert.Equal("I am human.\nI have head on my shoulders.\n", h.ToString());
+            if(that.data.Contains("<head>"))
+                return;
+            string htmlTag = "<html>\n";
+            int begin = that.data.IndexOf(htmlTag);
+            that.data = that.data.Insert(begin + htmlTag.Length, "\t<head>\n\t</head>\n");
         }
     }
 }
