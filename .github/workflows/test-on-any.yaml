@@ -7,7 +7,7 @@ jobs:
       matrix:
         os: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
         class-filter: [Decorator.Tests.Decorator, Strategy.Tests.Strategy, Tests.Facade, Tests.Builder, AbstractFactory.Tests.AbstractFactory]
-    name: ${{ matrix.os }}: ${{ matrix.class-filter }}
+    name: '${{ matrix.os }}: ${{ matrix.class-filter }}'
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@master
