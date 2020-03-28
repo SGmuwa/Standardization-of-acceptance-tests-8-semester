@@ -16,5 +16,5 @@ jobs:
         name: Install dotnet
         with:
           dotnet-version: '3.1.101'
-      - run: dotnet test --filter FullyQualifiedName~Patterns.${{ matrix.class-filter }}
+      - run: dotnet test --filter FullyQualifiedName~${{ matrix.class-filter }}
         name: Run test
