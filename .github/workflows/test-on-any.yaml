@@ -1,13 +1,10 @@
 name: Test on any Push event
 on:
-  push:
-    tags:
-      - '*'
-    branches:
-      - '*'
+  push: [push, pull_request]
 jobs:
-  test:
-    runs-on: [ubuntu-latest]
+  DecoratorTest:
+    runs-on: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@master
         name: Clone repository
@@ -15,5 +12,53 @@ jobs:
         name: Install dotnet
         with:
           dotnet-version: '3.1.101'
-      - run: dotnet test
-        name: All tests
+      - run: dotnet test --filter ClassName=Patterns.Decorator.Tests.Decorator
+        name: Run test
+  StrategyTest:
+    runs-on: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+      - uses: actions/setup-dotnet@1.4.0
+        name: Install dotnet
+        with:
+          dotnet-version: '3.1.101'
+      - run: dotnet test --filter ClassName=Patterns.Strategy.Tests.Strategy
+        name: Run test
+  FacadeTest:
+    runs-on: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+      - uses: actions/setup-dotnet@1.4.0
+        name: Install dotnet
+        with:
+          dotnet-version: '3.1.101'
+      - run: dotnet test --filter ClassName=Patterns.Tests.Facade
+        name: Run test
+  BuilderTest:
+    runs-on: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+      - uses: actions/setup-dotnet@1.4.0
+        name: Install dotnet
+        with:
+          dotnet-version: '3.1.101'
+      - run: dotnet test --filter ClassName=Patterns.Tests.Builder
+        name: Run test
+  AbstractFactory:
+    runs-on: [windows-2019, ubuntu-18.04, ubuntu-16.04, macos-10.15]
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@master
+        name: Clone repository
+      - uses: actions/setup-dotnet@1.4.0
+        name: Install dotnet
+        with:
+          dotnet-version: '3.1.101'
+      - run: dotnet test --filter ClassName=Patterns.AbstractFactory.Tests.AbstractFactory
+        name: Run test
