@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
+using Patterns.Facade;
 using Xunit;
 
 namespace Patterns.Tests
@@ -26,7 +26,18 @@ namespace Patterns.Tests
         [Fact]
         public void Expected()
         {
-            throw new NotImplementedException();
+            IEasyVehicle car = new FacadeVehicle();
+            Assert.Equal(City.Moscow, car.Position);
+            car.Position = City.NewYork;
+            Assert.Equal(City.NewYork, car.Position);
+            car.Position = City.Moon;
+            Assert.Equal(City.Moon, car.Position);
+            Assert.Throws<VehicleException>(() => car.Position = City.Unknown);
+            Assert.Equal(City.Moon, car.Position);
+            car.Position = City.Moscow;
+            Assert.Equal(City.Moscow, car.Position);
+            car.Position = City.Moscow;
+            Assert.Equal(City.Moscow, car.Position);
         }
     }
 }

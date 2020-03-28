@@ -20,7 +20,7 @@ namespace Patterns.Facade
 {
     public class Vehicle
     {
-        private bool power;
+        private bool power = false;
 
         public bool Power
         {
@@ -30,8 +30,8 @@ namespace Patterns.Facade
             }
             set
             {
-                if (power)
-                    throw new VehicleException("Vehicle already on!");
+                if (!power ^ value)
+                    throw new VehicleException($"Vehicle already {(power ? "on" : "off")}!");
                 power = value;
             }
         }

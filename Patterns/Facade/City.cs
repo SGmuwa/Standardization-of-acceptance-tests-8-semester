@@ -16,12 +16,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Patterns.Facade
 {
-    public struct City
+    public class City
     {
         private City(double position)
             => Position = position;
@@ -33,5 +33,32 @@ namespace Patterns.Facade
         public static readonly City Moon = new City(100000000);
         public static readonly City Unknown = new City(double.NaN);
         public static readonly ReadOnlyCollection<City> All = new ReadOnlyCollection<City>(new City[] { Moscow, NewYork, Moon });
+
+        public static City SearchNear(double pos)
+        {
+            City win = City.Unknown;
+            double cache = double.NaN;
+            foreach (City c in City.All)
+            {
+                double newDistance = GetDistance(pos, c.Position);
+                if (cache > newDistance || double.IsNaN(cache))
+                {
+                    cache = newDistance;
+                    win = c;
+                }
+            }
+            return win;
+        }
+
+        public static double GetDistance(double p1, double p2)
+            => Math.Abs(p1 - p2);
+
+        public override bool Equals(object obj)
+            => obj is City oth
+                && Object.ReferenceEquals(SearchNear(Position), oth);
+
+        public override int GetHashCode() => HashCode.Combine(Position);
+
+        public override string ToString() => $"City at {Position}";
     }
 }

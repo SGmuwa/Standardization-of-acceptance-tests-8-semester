@@ -33,7 +33,7 @@ namespace Patterns.Facade
         {
             get
             {
-                return searchNear();
+                return City.SearchNear(vehicle.Position);
             }
             set
             {
@@ -44,25 +44,6 @@ namespace Patterns.Facade
             }
         }
 
-        private City searchNear()
-        {
-            City win = City.Unknown;
-            double cache = double.NaN;
-            foreach(City c in City.All)
-            {
-                double newDistance = getDistance(vehicle.Position, c.Position);
-                if (cache > newDistance || double.IsNaN(cache))
-                {
-                    cache = newDistance;
-                    win = c;
-                }
-            }
-            return win;
-        }
-
-        private double getDistance(double p1, double p2)
-            => Math.Abs(p1 - p2);
-
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
@@ -72,7 +53,7 @@ namespace Patterns.Facade
             {
                 if (disposing)
                 {
-                    if(vehicle.Power)
+                    if (vehicle.Power)
                         vehicle.Power = false;
                 }
 
