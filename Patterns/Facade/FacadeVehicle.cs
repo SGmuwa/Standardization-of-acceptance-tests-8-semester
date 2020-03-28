@@ -37,7 +37,7 @@ namespace Patterns.Facade
             }
             set
             {
-                double addPos = vehicle.Position - value.Position;
+                double addPos = value.Position - vehicle.Position;
                 if (addPos == 0.0)
                     return;
                 vehicle.AddPosition(addPos);
