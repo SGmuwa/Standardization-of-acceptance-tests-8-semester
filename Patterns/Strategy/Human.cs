@@ -22,9 +22,6 @@ namespace Patterns.Strategy
     {
         public string data { get; set; } = "I am human.\n";
 
-        public override string ToString()
-        {
-            return data.ToString();
-        }
+        public override string ToString() => data.ToString();
     }
 }

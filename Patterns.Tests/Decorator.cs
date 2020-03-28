@@ -19,6 +19,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Sdk;
 using static System.Text.Encoding;
 
 namespace Patterns.Decorator.Tests
@@ -108,23 +109,53 @@ namespace Patterns.Decorator.Tests
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
             Assert.Equal("Access: (3, 3)", sr.ReadLine());
+            Assert.True(sr.EndOfStream);
         }
 
         [Fact]
         public void WithThreadSafeTest()
         {
+            uint count = 5000;
+            ushort countThread = 2;
             IValueHolder<int> i = new ValueHolder<int>(0);
             i = new SynchronizedDecorator<int>(i);
-            Parallel.For(0, 1000, _ => i.V++);
-            Assert.Equal((1000uL, 1000uL), i.Access);
+            Parallel.For(0, countThread, _ =>
+            {
+                uint j = 0;
+                do
+                {
+                    i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                    i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                    i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                    i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                } while (++j < count);
+            });
+            Assert.Equal(((ulong)count * 256 * countThread, (ulong)count * 256 * countThread), i.Access);
         }
 
         [Fact]
         public void WithoutThreadSafeTest()
         {
-            IValueHolder<int> i = new ValueHolder<int>(0);
-            Parallel.For(0, 1000, _ => i.V++);
-            Assert.NotEqual((1000uL, 1000uL), i.Access);
+            for (byte j = 0; j < 10; j++)
+            {
+                uint count = 2500u * j;
+                ushort countThread = 2;
+                IValueHolder<int> i = new ValueHolder<int>(0);
+                Parallel.For(0, countThread, _ =>
+                {
+                    uint j = 0;
+                    do
+                    {
+                        i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                        i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                        i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                        i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V; i.V = i.V;
+                    } while (++j < count);
+                });
+                if(((ulong)count * 256 * countThread, (ulong)count * 256 * countThread) != i.Access)
+                    return;
+            }
+            throw new XunitException("Without thread safe class is safe!");
         }
     }
 }
