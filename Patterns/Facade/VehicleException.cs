@@ -17,16 +17,13 @@
 */
 
 using System;
-using Xunit;
 
-namespace Patterns.Tests
+namespace Patterns.Facade
 {
-    public class Facade
+    public class VehicleException : Exception
     {
-        [Fact]
-        public void Expected()
+        public VehicleException(string message) : base(message)
         {
-            throw new NotImplementedException();
         }
     }
 }

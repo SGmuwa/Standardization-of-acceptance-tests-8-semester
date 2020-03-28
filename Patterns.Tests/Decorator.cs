@@ -18,11 +18,12 @@
 
 using System.IO;
 using System.Threading.Tasks;
+using Patterns.Decorator;
 using Xunit;
 using Xunit.Sdk;
 using static System.Text.Encoding;
 
-namespace Patterns.Decorator.Tests
+namespace Patterns.Tests
 {
     public class Decorator
     {

@@ -16,9 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using Patterns.AbstractFactory;
 using Xunit;
 
-namespace Patterns.AbstractFactory.Tests
+namespace Patterns.Tests
 {
     public class AbstractFactory
     {

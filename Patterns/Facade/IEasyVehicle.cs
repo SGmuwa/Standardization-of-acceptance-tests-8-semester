@@ -16,17 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
-using Xunit;
-
-namespace Patterns.Tests
+namespace Patterns.Facade
 {
-    public class Facade
+    public interface IEasyVehicle
     {
-        [Fact]
-        public void Expected()
-        {
-            throw new NotImplementedException();
-        }
+        City Position { get; set; }
     }
 }

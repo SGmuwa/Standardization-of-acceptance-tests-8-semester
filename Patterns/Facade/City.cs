@@ -16,17 +16,22 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
-using Xunit;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
-namespace Patterns.Tests
+namespace Patterns.Facade
 {
-    public class Facade
+    public struct City
     {
-        [Fact]
-        public void Expected()
-        {
-            throw new NotImplementedException();
-        }
+        private City(double position)
+            => Position = position;
+
+        public double Position { get; }
+
+        public static readonly City Moscow = new City(20);
+        public static readonly City NewYork = new City(10000);
+        public static readonly City Moon = new City(100000000);
+        public static readonly City Unknown = new City(double.NaN);
+        public static readonly ReadOnlyCollection<City> All = new ReadOnlyCollection<City>(new City[] { Moscow, NewYork, Moon });
     }
 }
