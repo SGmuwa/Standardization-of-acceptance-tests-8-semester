@@ -18,19 +18,8 @@
 
 namespace Patterns.Strategy
 {
-    public class HaverHead
+    public interface IAdderHead
     {
-        public IAdderHead Strategy { protected get; set; }
-
-        public HaverHead(IAdderHead strategy)
-            => Strategy = strategy;
-
-        public string Data { get; set; } = "";
-        
-        public void AddHead()
-            => Data = Strategy.AddHead(Data);
-
-        public override string ToString()
-            => Data;
+        string AddHead(string context);
     }
 }

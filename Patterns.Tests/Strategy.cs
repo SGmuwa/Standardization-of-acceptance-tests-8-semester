@@ -25,14 +25,14 @@ namespace Patterns.Tests
         [Fact]
         public void CombineDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHeadHead);
+            HaverHead h = new HaverHead(AdderHeadHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("I am head and I exists.", h.ToString());
-            h.Strategy = AdderHead.AddHumanHead;
+            h.Strategy = AdderHumanHead.Instance;
             h.AddHead();
             Assert.Equal("I am head and I exists.I have head on my shoulders.\n", h.ToString());
-            h.Strategy = AdderHead.AddHTMLHead;
+            h.Strategy = AdderHTMLHead.Instance;
             h.AddHead();
             Assert.Equal("I am head and I exists.I have head on my shoulders.\n\t<head>\n\t</head>\n", h.ToString());
         }
@@ -40,7 +40,7 @@ namespace Patterns.Tests
         [Fact]
         public void HTMLTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHTMLHead);
+            HaverHead h = new HaverHead(AdderHTMLHead.Instance);
             Assert.Empty(h.ToString());
             h.Data = "<html>\n</html>\n";
             Assert.Equal("<html>\n</html>\n", h.ToString());
@@ -51,7 +51,7 @@ namespace Patterns.Tests
         [Fact]
         public void HTMLDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHTMLHead);
+            HaverHead h = new HaverHead(AdderHTMLHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("\t<head>\n\t</head>\n", h.ToString());
@@ -60,7 +60,7 @@ namespace Patterns.Tests
         [Fact]
         public void HumanTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHumanHead);
+            HaverHead h = new HaverHead(AdderHumanHead.Instance);
             Assert.Empty(h.ToString());
             h.Data = "I am human.\n";
             Assert.Equal("I am human.\n", h.ToString());
@@ -71,7 +71,7 @@ namespace Patterns.Tests
         [Fact]
         public void HumanDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHumanHead);
+            HaverHead h = new HaverHead(AdderHumanHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("I have head on my shoulders.\n", h.ToString());
@@ -80,7 +80,7 @@ namespace Patterns.Tests
         [Fact]
         public void HeadDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHead.AddHeadHead);
+            HaverHead h = new HaverHead(AdderHeadHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("I am head and I exists.", h.ToString());

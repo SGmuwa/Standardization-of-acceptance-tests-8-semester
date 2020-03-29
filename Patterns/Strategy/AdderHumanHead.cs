@@ -18,19 +18,13 @@
 
 namespace Patterns.Strategy
 {
-    public class HaverHead
+    public class AdderHumanHead : IAdderHead
     {
-        public IAdderHead Strategy { protected get; set; }
+        public static AdderHumanHead Instance = new AdderHumanHead();
 
-        public HaverHead(IAdderHead strategy)
-            => Strategy = strategy;
+        private AdderHumanHead() { }
 
-        public string Data { get; set; } = "";
-        
-        public void AddHead()
-            => Data = Strategy.AddHead(Data);
-
-        public override string ToString()
-            => Data;
+        public string AddHead(string human)
+            => human + "I have head on my shoulders.\n";
     }
 }
