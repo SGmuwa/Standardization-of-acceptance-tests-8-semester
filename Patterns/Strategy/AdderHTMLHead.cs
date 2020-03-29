@@ -20,7 +20,7 @@ namespace Patterns.Strategy
 {
     public class AdderHTMLHead : IAdderHead
     {
-        public static AdderHTMLHead Instance = new AdderHTMLHead();
+        public static readonly AdderHTMLHead Instance = new AdderHTMLHead();
 
         private AdderHTMLHead() { }
 

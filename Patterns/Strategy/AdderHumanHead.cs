@@ -20,7 +20,7 @@ namespace Patterns.Strategy
 {
     public class AdderHumanHead : IAdderHead
     {
-        public static AdderHumanHead Instance = new AdderHumanHead();
+        public static readonly AdderHumanHead Instance = new AdderHumanHead();
 
         private AdderHumanHead() { }
 
