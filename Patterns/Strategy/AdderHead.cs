@@ -18,7 +18,7 @@
 
 namespace Patterns.Strategy
 {
-	public static class AdderHead
+    public static class AdderHead
     {
         public static void AddHead(this Human that)
             => that.data += "I have head on my shoulders.\n";
