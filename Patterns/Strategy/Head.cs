@@ -18,10 +18,8 @@
 
 namespace Patterns.Strategy
 {
-    public class Human : ICanHaveHead
+    public class Head : ICanHaveHead
     {
-        public string data { get; set; } = "I am human.\n";
-
-        public override string ToString() => data.ToString();
+        public bool IsExists { get; set; } = false;
     }
 }

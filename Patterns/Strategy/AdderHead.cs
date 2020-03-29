@@ -16,14 +16,27 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+
 namespace Patterns.Strategy
 {
     public static class AdderHead
     {
-        public static void AddHead(this Human that)
+        public static void AddHead(this ICanHaveHead that)
+        {
+            switch(that)
+            {
+                case Human v: v.AddHead(); break;
+                case HTML v : v.AddHead(); break;
+                case Head v : v.AddHead(); break;
+                default: throw new NotImplementedException("Strategy dose not support.");
+            }
+        }
+        
+        private static void AddHead(this Human that)
             => that.data += "I have head on my shoulders.\n";
 
-        public static void AddHead(this HTML that)
+        private static void AddHead(this HTML that)
         {
             if(that.data.Contains("<head>"))
                 return;
@@ -31,5 +44,8 @@ namespace Patterns.Strategy
             int begin = that.data.IndexOf(htmlTag);
             that.data = that.data.Insert(begin + htmlTag.Length, "\t<head>\n\t</head>\n");
         }
+
+        private static void AddHead(this Head that)
+            => that.IsExists = true;
     }
 }

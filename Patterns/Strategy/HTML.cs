@@ -18,7 +18,7 @@
 
 namespace Patterns.Strategy
 {
-    public class HTML
+    public class HTML : ICanHaveHead
     {
         public string data { get; set; } = "<html>\n</html>\n";
 

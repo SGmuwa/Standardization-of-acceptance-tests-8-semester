@@ -39,5 +39,14 @@ namespace Patterns.Tests
             h.AddHead();
             Assert.Equal("I am human.\nI have head on my shoulders.\n", h.ToString());
         }
+
+        [Fact]
+        public void HeadTest()
+        {
+            Head h = new Head();
+            Assert.False(h.IsExists);
+            h.AddHead();
+            Assert.True(h.IsExists);
+        }
     }
 }
