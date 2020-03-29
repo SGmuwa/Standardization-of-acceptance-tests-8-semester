@@ -18,8 +18,25 @@
 
 namespace Patterns.Strategy
 {
-    public interface IAdderHead
+    public static class AdderHead
     {
-        string AddHead(string context);
+        public static string AddHumanHead(string human)
+            => human + "I have head on my shoulders.\n";
+
+        public static string AddHTMLHead(string html)
+        {
+            if (html == null)
+                html = "";
+            if (html.Contains("<head>"))
+                return html;
+            string htmlTag = "<html>\n";
+            int begin = html.IndexOf(htmlTag);
+            if (begin < 0)
+                begin = html.Length - htmlTag.Length;
+            return html.Insert(begin + htmlTag.Length, "\t<head>\n\t</head>\n");
+        }
+
+        public static string AddHeadHead(string head = null)
+            => "I am head and I exists.";
     }
 }

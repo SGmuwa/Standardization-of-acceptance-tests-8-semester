@@ -16,13 +16,23 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+
 namespace Patterns.Strategy
 {
     public class HaverHead
     {
-        public IAdderHead Strategy { get; set; }
+        public Func<string, string> Strategy { protected get; set; }
 
-        public HaverHead(IAdderHead strategy)
+        public HaverHead(Func<string, string> strategy)
             => Strategy = strategy;
+
+        public string Data { get; set; } = "";
+        
+        public void AddHead()
+            => Data = Strategy(Data);
+
+        public override string ToString()
+            => Data;
     }
 }
