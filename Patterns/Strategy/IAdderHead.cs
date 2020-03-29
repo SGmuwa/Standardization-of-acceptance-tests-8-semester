@@ -18,10 +18,8 @@
 
 namespace Patterns.Strategy
 {
-    public class Human : ICanHaveHead
+    public interface IAdderHead
     {
-        public string data { get; set; } = "I am human.\n";
-
-        public override string ToString() => data.ToString();
+        string AddHead(string context);
     }
 }

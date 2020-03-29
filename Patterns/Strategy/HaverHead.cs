@@ -18,10 +18,11 @@
 
 namespace Patterns.Strategy
 {
-    public class HTML : ICanHaveHead
+    public class HaverHead
     {
-        public string data { get; set; } = "<html>\n</html>\n";
+        public IAdderHead Strategy { get; set; }
 
-        public override string ToString() => data.ToString();
+        public HaverHead(IAdderHead strategy)
+            => Strategy = strategy;
     }
 }

@@ -18,6 +18,9 @@
 
 namespace Patterns.Strategy
 {
-    public interface ICanHaveHead { }
+    public class AdderHeadHead : IAdderHead
+    {
+        public string AddHead(string context = null)
+            => "I am head and I exists.";
+    }
 }
- 

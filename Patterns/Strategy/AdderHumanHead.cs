@@ -18,8 +18,9 @@
 
 namespace Patterns.Strategy
 {
-    public class Head : ICanHaveHead
+    public class AdderHumanHead : IAdderHead
     {
-        public bool IsExists { get; set; } = false;
+        public string AddHead(string human)
+            => human + "I have head on my shoulders.\n";
     }
 }
