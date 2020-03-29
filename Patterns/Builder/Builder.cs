@@ -18,7 +18,7 @@
 
 using System;
 
-namespace Patterns
+namespace Patterns.Builder
 {
     public class Flower
     {
