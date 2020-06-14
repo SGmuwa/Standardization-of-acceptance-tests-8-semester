@@ -23,18 +23,13 @@ namespace Patterns.Facade
     public class FacadeVehicle : IEasyVehicle, IDisposable
     {
         public FacadeVehicle()
-        {
-            vehicle.Power = true;
-        }
+            => vehicle.Power = true;
 
         private Vehicle vehicle = new Vehicle();
 
         public City Position
         {
-            get
-            {
-                return City.SearchNear(vehicle.Position);
-            }
+            get => City.SearchNear(vehicle.Position);
             set
             {
                 double addPos = value.Position - vehicle.Position;
