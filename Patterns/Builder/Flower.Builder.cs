@@ -1,4 +1,4 @@
-﻿/*
+/*
     Homework of Standardization of acceptance tests in 8 semester.
     Copyright (C) 2020  Sidorenko Mikhail Pavlovich (motherlode.muwa@gmail.com)
 
@@ -22,15 +22,33 @@ namespace Patterns.Builder
 {
     public partial class Flower
     {
-        public ConsoleColor Color { get; private set; }
-        public float Length { get; private set; }
-
-        public Flower(ConsoleColor color, float length)
+        public class Builder
         {
-            Color = color;
-            Length = length;
-        }
+            private Flower current = new Flower();
 
-        private Flower() { }
+            private (bool isColor, bool isLength) setted = (false, false);
+
+            public Builder SetColor(ConsoleColor color)
+            {
+                current.Color = color;
+                setted.isColor = true;
+                return this;
+            }
+
+            public Builder SetLength(float length)
+            {
+                current.Length = length;
+                setted.isLength = true;
+                return this;
+            }
+
+            public Flower Build()
+            {
+                if (setted.isColor && setted.isLength)
+                    return new Flower(current.Color, current.Length);
+                else
+                    throw new Exception(setted.ToString());
+            }
+        }
     }
 }
