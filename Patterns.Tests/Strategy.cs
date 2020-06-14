@@ -25,7 +25,7 @@ namespace Patterns.Tests
         [Fact]
         public void CombineDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHeadHead.Instance);
+            HaverHead h = new HaverHead(AdderAnimalHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("I am head and I exists.", h.ToString());
@@ -80,7 +80,7 @@ namespace Patterns.Tests
         [Fact]
         public void HeadDefaultTest()
         {
-            HaverHead h = new HaverHead(AdderHeadHead.Instance);
+            HaverHead h = new HaverHead(AdderAnimalHead.Instance);
             Assert.Empty(h.ToString());
             h.AddHead();
             Assert.Equal("I am head and I exists.", h.ToString());

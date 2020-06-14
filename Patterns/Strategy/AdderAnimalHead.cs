@@ -18,11 +18,11 @@
 
 namespace Patterns.Strategy
 {
-    public class AdderHeadHead : IAdderHead
+    public class AdderAnimalHead : IAdderHead
     {
-        public static readonly AdderHeadHead Instance = new AdderHeadHead();
+        public static readonly AdderAnimalHead Instance = new AdderAnimalHead();
 
-        private AdderHeadHead() { }
+        private AdderAnimalHead() { }
 
         public string AddHead(string context = null)
             => "I am head and I exists.";
